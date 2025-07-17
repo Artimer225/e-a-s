@@ -9,6 +9,7 @@
 <body>
     <div id="btn">
         <button id="popup">Change grid size</button>
+        <button id="clear">Clear grid</button>
     </div>
 
     <div id="container">
@@ -16,16 +17,35 @@
      </div>
     <script>
         const container = document.querySelector('#container');
-        const btn = document.querySelector('#popup');
-        btn.addEventListener('click', () => {
+        const changeBtn = document.querySelector('#popup');
+        const clearBtn = document.querySelector('#clear');
+
+
+        changeBtn.addEventListener('click', () => {
             let numOfSquares = parseInt(prompt());
-            createGrid(numOfSquares);
+            deleteGrid();
+            if (numOfSquares <= 20) {
+                createGrid(numOfSquares, 'size1');
+            } else if (numOfSquares <= 40) {
+                createGrid(numOfSquares, 'size2');
+            } else if (numOfSquares <= 70) {
+                createGrid(numOfSquares, 'size3');
+            } else if (numOfSquares <= 100) {
+                createGrid(numOfSquares, 'size4');
+            } else if (numOfSquares > 100) {
+                numOfSquares = 100;
+                createGrid(numOfSquares, 'size4');
+            }
+
+
             let elements = document.querySelectorAll('.gridDiv');
             elements.forEach( (item) =>
                 item.addEventListener('mouseover', () => item.style.backgroundColor = 'red'))
         })
 
-        function createGrid (numOfSquares = 16) {
+        clearBtn.addEventListener('click', () => clearGrid());
+
+        function createGrid (numOfSquares = 16, sizeOfSquares='size1') {
             for (let i = 0; i < numOfSquares; i++) {
                 let layer = document.createElement('div');
                 layer.className = 'layer'
@@ -33,14 +53,25 @@
                 for (let j = 0; j < numOfSquares; j++) {
                     let gridDiv = document.createElement('div');
                     gridDiv.className = 'gridDiv';
+                    gridDiv.classList.add(sizeOfSquares);
                     layer.appendChild(gridDiv)
                 }
             }
         }
         createGrid()
 
-        function clearGrid () {
+        function deleteGrid () {
+            while (container.firstChild) {
+                container.removeChild(container.lastChild)
+            }
+        }
 
+        function clearGrid () {
+            let gridDivs = document.querySelectorAll('.gridDiv')
+            for (let i = 1; i < gridDivs.length; i++) {
+                let currentDiv = gridDivs[i];
+                currentDiv.style.backgroundColor = 'white';
+                }
         }
 
         let elements = document.querySelectorAll('.gridDiv');

@@ -3,6 +3,7 @@
     justify-content: center;
     align-content: center;
     margin: 20px;
+    gap: 10px;
 }
 #btn button {
     width: 200px;
@@ -13,21 +14,34 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    /*min-height: 100vh;*/
+    height: 700px;
     width: 960px;
-    flex-shrink: 5;
+    /*flex-shrink: 5;*/
     margin: auto;
 }
 .layer {
     display: flex;
     flex-wrap: wrap;
-    flex-shrink: 5;
 }
 .gridDiv {
     display: flex;
     outline: 2px outset pink;
     padding: 0;
-    height: 40px;
-    width: 40px;
     background-color: white;
+}
+.size1 {
+    width: 30px;
+    height: 30px;
+}
+.size2 {
+    width: 15px;
+    height: 15px;
+}
+.size3 {
+    width: 10px;
+    height: 10px;
+}
+.size4 {
+    width: 7px;
+    height: 7px;
 }
